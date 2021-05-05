@@ -1,1 +1,80 @@
-<p>dynamics works!</p>
+<h2>Reactive: <small>Dinámicos</small></h2>
+<hr>
+
+<form autocomplete="off" [formGroup]="myForm" (ngSubmit)="save()">
+    <!-- Nombre -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text" 
+                class="form-control"
+                formControlName="personName"
+                placeholder="Ingrese su nombre">
+            <span class="form-text text-danger"
+                *ngIf="showError('personName')">
+                Este campo es requerido
+            </span>        
+        </div>
+    </div>
+
+    <!-- Agregar Grupos Favoritos  -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Agregar Grupos Favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group mb-3">
+                <input type="text"
+                    (keyup.enter)="addFavGroup()"
+                    [formControl]="newFavGroup"
+                    class="form-control col-sm-10"
+                    placeholder="Agregar Grupo Musical favorito">
+                <button class="btn btn-outline-primary col-sm-2" 
+                    type="button"
+                    (click)="addFavGroup()">
+                    Agregar
+                </button>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Lista de Favoritos -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Lista de Grupos Favoritos</label>
+        <div class="col-sm-9" formArrayName="favoriteGroups">
+            <div class="input-group mb-1"
+                *ngFor="let favGroup of FavGroups.controls; let i = index">
+                <input type="text"
+                    [formControlName]="i"
+                    class="form-control col-sm-10">
+                <button class="btn btn-outline-danger col-sm-2"
+                    (click)="removeFavGroup(i)"
+                    type="button">
+                    Quitar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button type="submit"
+                class="btn btn-primary col-sm-2 float-end">
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>
+
+<span>Valid</span>
+<pre>{{ myForm.valid }}</pre>
+
+<br>
+
+<span>Value</span>
+<pre>{{ myForm.value | json }}</pre>
+
+<br>
+
+<span>Agregar</span>
+<pre>{{ newFavGroup.valid }}</pre>
+<br>
+<pre>{{ newFavGroup.value }}</pre>
