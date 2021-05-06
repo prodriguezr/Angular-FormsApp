@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ReactiveRoutingModule } from './reactive-routing.module';
 import { BasicsComponent } from './basics/basics.component';
 import { DynamicsComponent } from './dynamics/dynamics.component';
+import { ReactiveRoutingModule } from './reactive-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SwitchesComponent } from './switches/switches.component';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SwitchesComponent } from './switches/switches.component';
   ],
   imports: [
     CommonModule,
-    ReactiveRoutingModule
+    ReactiveRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ReactiveModule { }
