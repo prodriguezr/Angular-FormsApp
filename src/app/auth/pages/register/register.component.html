@@ -1,1 +1,116 @@
-<p>register works!</p>
+<h2>Validaciones Reactivas</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form autocomplete="off" 
+            [formGroup]="myForm"
+            (ngSubmit)="create()">
+
+            <!-- Nombre -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                        class="form-control"
+                        formControlName="name"
+                        placeholder="Nombre del usuario">
+                    <span *ngIf="showInvalidField('name')" 
+                        class="text text-danger">
+                        Debe ser nombre y apellido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" 
+                        class="form-control"
+                        formControlName="email"
+                        placeholder="Correo electrónico del usuario">
+                    <span *ngIf="showInvalidField('email')" 
+                        class="text text-danger">
+                        Debe ser correo electrónico válido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre de la Cuenta</label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                        class="form-control"
+                        formControlName="username"
+                        placeholder="Nombre de la cuenta de usuario">
+                    <span *ngIf="showInvalidField('username')" 
+                        class="text text-danger">
+                        Debe usar una cuenta distinta a prodrigu
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Clave</label>
+                <div class="col-sm-9">
+                    <input type="password" 
+                        class="form-control"
+                        formControlName="password"
+                        placeholder="Clave del Usuario">
+                    <span *ngIf="showInvalidField('password')" 
+                        class="text text-danger">
+                        La clave debe tener 4 caracteres como mínimo
+                    </span>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Reingrese Clave</label>
+                <div class="col-sm-9">
+                    <input type="password" 
+                        class="form-control"
+                        formControlName="confirm"
+                        placeholder="Confirmar clave del usuario">
+                    <span *ngIf="showInvalidField('confirm')" 
+                        class="text text-danger">
+                        Las claves no coinciden
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" 
+                        class="btn btn-primary float-end"
+                        (click)="create()">
+                        Crear
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<h2>Form Valid: {{ myForm.valid }}</h2>
+<h2>Forms Errors:</h2>
+<pre>{{ myForm.errors | json }}</pre>
+
+<h2>Nombre</h2>
+<pre>{{ myForm.controls.name.errors | json }}</pre>
+
+<h2>Email</h2>
+<pre>{{ myForm.controls.email.errors | json }}</pre>
+
+<h2>Username</h2>
+<pre>{{ myForm.controls.username.errors | json }}</pre>
+
+<h2>Password</h2>
+<pre>{{ myForm.controls.password.errors | json }}</pre>
+
+<h2>Confirm</h2>
+<pre>{{ myForm.controls.confirm.errors | json }}</pre>
