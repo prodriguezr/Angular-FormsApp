@@ -30,12 +30,15 @@ export class ValidatorsService {
 
       if (pass !== confirm) {
         formGroup.get(field2)?.setErrors({ equalFields: true });
+        //formGroup.get(field2)?.updateValueAndValidity();
+
         return {
           equalFields: true
         }
       }
 
       formGroup.get(field2)?.setErrors({ equalFields: null });
+      //formGroup.get(field2)?.updateValueAndValidity();
       return null;
     }
   }

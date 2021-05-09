@@ -32,7 +32,7 @@
                         placeholder="Correo electrónico del usuario">
                     <span *ngIf="showInvalidField('email')" 
                         class="text text-danger">
-                        Debe ser correo electrónico válido
+                        {{ emailErrorMsg }}
                     </span>
                 </div>
             </div>
@@ -86,6 +86,7 @@
                 <div class="col">
                     <button type="submit" 
                         class="btn btn-primary float-end"
+                        [disabled]="myForm.pending"
                         (click)="create()">
                         Crear
                     </button>
@@ -97,20 +98,23 @@
 </div>
 
 <h2>Form Valid: {{ myForm.valid }}</h2>
-<h2>Forms Errors:</h2>
+<h2>Form Status: {{ myForm.status }}</h2>
+<h2>Form Pending: {{ myForm.pending }}</h2>
+
+<h5>Forms Errors:</h5>
 <pre>{{ myForm.errors | json }}</pre>
 
-<h2>Nombre</h2>
+<h5>Nombre</h5>
 <pre>{{ myForm.controls.name.errors | json }}</pre>
 
-<h2>Email</h2>
+<h5>Email</h5>
 <pre>{{ myForm.controls.email.errors | json }}</pre>
 
-<h2>Username</h2>
+<h5>Username</h5>
 <pre>{{ myForm.controls.username.errors | json }}</pre>
 
-<h2>Password</h2>
+<h5>Password</h5>
 <pre>{{ myForm.controls.password.errors | json }}</pre>
 
-<h2>Confirm</h2>
+<h5>Confirm</h5>
 <pre>{{ myForm.controls.confirm.errors | json }}</pre>
